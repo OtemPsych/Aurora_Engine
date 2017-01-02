@@ -1,0 +1,23 @@
+Aurora Engine Release Notes
+
+v0.1.1 | 02/01/2017
+  Features
+    * Added a MusicPlayer class
+    * Added a pauseSounds method and a stopSounds method for the SoundPlayer class
+  Updates
+    - The SoundProperties struct inside the SoundPlayer class is now a global class situated in AU/Audio/SoundProperties.h
+    - The Z coordinate of the listener in the SoundPlayer class can no longer be changed, it will remain at 300
+    - Updated the vector normalization documentation of the utility math class
+  Bug Fixes
+    ~ Added documentation comments to method definitions for template classes/structs as they weren't displaying when said methods were used
+      Modifications were made to the following classes/structs: Resource, ResourceHolder
+
+v0.1.0 | 31/12/2016
+  Features
+    * Added a SoundPlayer class that facilitates loading in sound effects and playing them
+    * Added a Resource utility struct that functions like a std::pair but interchanges the first and second attributes by original and current
+    * Added a ResourceHolder class that stores sfml resources by providing a filename and an enumeration as an ID
+    * Added a basic static utility math class
+	
+v0.0.0 | 25/12/2016
+  * Project Creation
