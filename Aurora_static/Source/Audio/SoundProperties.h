@@ -29,7 +29,7 @@ namespace au
 		/// is to modify the playing speed of the sound as well.<para/>
 		/// The default value for the pitch is 1.
 		/// </param>
-		/// <param name="minDistance2D">
+		/// <param name="min_distance2d">
 		/// The "minimum distance" of a sound is the maximum<para/>
 		/// distance at which it is heard at its maximum volume. Further<para/>
 		/// than the minimum distance, it will start to fade out according<para/>
@@ -37,7 +37,7 @@ namespace au
 		/// of the listener") is an invalid value and is forbidden.<para/>
 		/// The default value of the minimum distance is 1.
 		/// </param>
-		/// <param name="relativeToListener">
+		/// <param name="relative_to_listener">
 		/// Making a sound relative to the listener will ensure that it will always<para/>
 		/// be played the same way regardless of the position of the listener.<para/>
 		/// This can be useful for non-spatialized sounds, sounds that are<para/>
@@ -45,7 +45,7 @@ namespace au
 		/// The default value is false (position is absolute).
 		/// </param>
 		SoundProperties(float volume = 100.f, float attenuation = 1.f, float pitch = 1.f,
-			            float minDistance2D = 1.f, bool relativeToListener = false);
+			            float min_distance2d = 1.f, bool relative_to_listener = false);
 	public:
 		/// <summary>
 		/// Set the volume to a value between 0 (mute) and 100 (full volume).<para/>
@@ -66,13 +66,13 @@ namespace au
 		/// of the listener") is an invalid value and is forbidden.<para/>
 		/// The default value of the minimum distance is 1.
 		/// </summary>
-		/// <param name="minDistance2D">The new minimum distance</param>
+		/// <param name="min_distance2d">The new minimum distance</param>
 		/// <see cref="getMinDistance2D"/>
 		/// <seealso cref="setVolume"/>
 		/// <seealso cref="setAttenuation"/>
 		/// <seealso cref="setPitch"/>
 		/// <seealso cref="setRelativeToListener"/>
-		void setMinDistance2D(float minDistance2D);
+		void setMinDistance2D(float min_distance2d);
 		/// <summary>
 		/// The attenuation is a multiplicative factor which makes<para/>
 		/// the sound more or less loud according to its distance<para/>
@@ -89,7 +89,7 @@ namespace au
 		/// <seealso cref="setPitch"/>
 		/// <seealso cref="setMinDistance2D"/>
 		/// <seealso cref="setRelativeToListener"/>
-		inline void setAttenuation(float attenuation) { mAttenuation = attenuation; }
+		inline void setAttenuation(float attenuation) { attenuation_ = attenuation; }
 		/// <summary>
 		/// The pitch represents the perceived fundamental frequency<para/>
 		/// of a sound; thus you can make a sound more acute or grave<para/>
@@ -103,7 +103,7 @@ namespace au
 		/// <seealso cref="setAttenuation"/>
 		/// <seealso cref="setMinDistance2D"/>
 		/// <seealso cref="setRelativeToListener"/>
-		inline void setPitch(float pitch) { mPitch = pitch; }
+		inline void setPitch(float pitch) { pitch_ = pitch; }
 		/// <summary>
 		/// Making a sound relative to the listener will ensure that it will always<para/>
 		/// be played the same way regardless of the position of the listener.<para/>
@@ -111,44 +111,44 @@ namespace au
 		/// produced by the listener, or sounds attached to it.<para/>
 		/// The default value is false (position is absolute).
 		/// </summary>
-		/// <param name="relativeToListener">True to make the sound relative to the listener, false otherwise</param>
+		/// <param name="relative_to_listener">True to make the sound relative to the listener, false otherwise</param>
 		/// <see cref="isRelativeToListener"/>
 		/// <seealso cref="setVolume"/>
 		/// <seealso cref="setAttenuation"/>
 		/// <seealso cref="setPitch"/>
 		/// <seealso cref="setMinDistance2D"/>
-		inline void setRelativeToListener(bool relativeToListener) { mRelativeToListener = relativeToListener; }
+		inline void setRelativeToListener(bool relative_to_listener) { relative_to_listener_ = relative_to_listener; }
 		/// <summary>Get the volume value</summary>
 		/// <returns>The volume value</returns>
 		/// <see cref="setVolume"/>
-		inline float getVolume() const { return mVolume; }
+		inline float getVolume() const { return volume_; }
 		/// <summary>Get the minimum 2d distance</summary>
 		/// <returns>The minimum 2d distance</returns>
 		/// <see cref="setMinDistance2D"/>
-		inline float getMinDistance2D() const { return mMinDistance2D; }
+		inline float getMinDistance2D() const { return min_distance2d_; }
 		/// <summary>Get the minimum 3d distance</summary>
 		/// <returns>The minimum 3d distance</returns>
-		inline float getMinDistance3D() const { return mMinDistance3D; }
+		inline float getMinDistance3D() const { return min_distance3d_; }
 		/// <summary>Get the attenuation factor</summary>
 		/// <returns>The attenuation factor</returns>
 		/// <see cref="setAttenuation"/>
-		inline float getAttenuation() const { return mAttenuation; }
+		inline float getAttenuation() const { return attenuation_; }
 		/// <summary>Get the pitch frequency</summary>
 		/// <returns>The pitch frequency</returns>
 		/// <see cref="setPitch"/>
-		inline float getPitch() const { return mPitch; }
+		inline float getPitch() const { return pitch_; }
 		/// <summary>Is the sound relative to the listener</summary>
 		/// <returns>True if the sound is relative to the listener, false otherwise</returns>
 		/// <see cref="setRelativeToListener"/>
-		inline bool isRelativeToListener() const { return mRelativeToListener; }
+		inline bool isRelativeToListener() const { return relative_to_listener_; }
 
 		private:
-			float mVolume;
-			float mAttenuation;
-			float mPitch;
-			float mMinDistance2D;
-			float mMinDistance3D;
-			bool  mRelativeToListener;
+			float volume_;
+			float attenuation_;
+			float pitch_;
+			float min_distance2d_;
+			float min_distance3d_;
+			bool  relative_to_listener_;
 	};
 }
 #endif

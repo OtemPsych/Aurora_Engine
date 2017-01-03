@@ -29,12 +29,12 @@ namespace au
 		void load(const std::string& filename, ID id);
 		/// <summary>Loads in a shader resource</summary>
 		/// <param name="filename">String containing the resource file path</param>
-		/// <param name="shaderParam">Extra parameter for shader loading</param>
+		/// <param name="t">Extra parameter for shader loading</param>
 		/// <param name="id">Enumeration value with which to link the resource</param>
 		/// <see cref="unload"/>
 		/// <seealso cref="get"/>
-		template <typename ShaderParam>
-		void load(const std::string& filename, const ShaderParam& shaderParam, ID id);
+		template <typename T>
+		void load(const std::string& filename, const T& t, ID id);
 		/// <summary>Unloads a resource</summary>
 		/// <param name="id">ID of the resource to unload</param>
 		/// <see cref="load"/>
@@ -56,7 +56,7 @@ namespace au
 		void insertResource(const Res& res, ID id);
 
 	private:
-		std::map<ID, Res> mResourceMap;
+		std::map<ID, Res> resource_map_;
 	};
 
 	template <typename ID>

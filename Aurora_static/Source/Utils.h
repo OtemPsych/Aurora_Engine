@@ -25,6 +25,5 @@ namespace au
 		};
 	}
 }
-
 #include "Utils.inl"
 #endif

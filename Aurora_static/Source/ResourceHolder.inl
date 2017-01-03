@@ -11,28 +11,28 @@ namespace au
 	template <typename ID, typename Res>
 	void ResourceHolder<ID, Res>::load(const std::string& filename, ID id)
 	{
-		Res resource;
-		if (!resource.loadFromFile(filename))
+		Res res;
+		if (!res.loadFromFile(filename))
 			std::cout << "\nResourceHolder::load - Failed to load " << filename << std::endl;
 		else
-			insertResource(std::move(resource), id);
+			insertResource(std::move(res), id);
 	}
 
 	/// <summary>Loads in a shader resource</summary>
 	/// <param name="filename">String containing the resource file path</param>
-	/// <param name="shaderParam">Extra parameter for shader loading</param>
+	/// <param name="t">Extra parameter for shader loading</param>
 	/// <param name="id">Enumeration value with which to link the resource</param>
 	/// <see cref="unload"/>
 	/// <seealso cref="get"/>
 	template <typename ID, typename Res>
-	template <typename ShaderParam>
-	void ResourceHolder<ID, Res>::load(const std::string& filename, const ShaderParam& shaderParam, ID id)
+	template <typename T>
+	void ResourceHolder<ID, Res>::load(const std::string& filename, const T& t, ID id)
 	{
-		Res resource;
-		if (!resource.loadFromFile(filename, shaderParam))
+		Res res;
+		if (!res.loadFromFile(filename, t))
 			std::cout << "\nResourceHolder::load - Failed to load " << filename << std::endl;
 		else
-			insertResource(std::move(resource), id);
+			insertResource(std::move(res), id);
 	}
 
 	/// <summary>Unloads a resource</summary>
@@ -41,10 +41,10 @@ namespace au
 	template <typename ID, typename Res>
 	void ResourceHolder<ID, Res>::unload(ID id)
 	{
-		auto found = mResourceMap.find(id);
-		assert(found != mResourceMap.end());
+		auto found = resource_map_.find(id);
+		assert(found != resource_map_.end());
 
-		mResourceMap.erase(found);
+		resource_map_.erase(found);
 	}
 
 	/// <summary>Retrieves a resource</summary>
@@ -54,8 +54,8 @@ namespace au
 	template <typename ID, typename Res>
 	Res& ResourceHolder<ID, Res>::get(ID id)
 	{
-		auto found = mResourceMap.find(id);
-		assert(found != mResourceMap.end());
+		auto found = resource_map_.find(id);
+		assert(found != resource_map_.end());
 
 		return found->second;
 	}
@@ -67,8 +67,8 @@ namespace au
 	template <typename ID, typename Res>
 	const Res& ResourceHolder<ID, Res>::get(ID id) const
 	{
-		auto found = mResourceMap.find(id);
-		assert(found != mResourceMap.end());
+		auto found = resource_map_.find(id);
+		assert(found != resource_map_.end());
 
 		return found->second;
 	}
@@ -79,7 +79,7 @@ namespace au
 	template <typename ID, typename Res>
 	void ResourceHolder<ID, Res>::insertResource(const Res& res, ID id)
 	{
-		auto inserted = mResourceMap.insert(std::make_pair(id, std::move(res)));
+		auto inserted = resource_map_.insert(std::make_pair(id, std::move(res)));
 		assert(inserted.second);
 	}
 }

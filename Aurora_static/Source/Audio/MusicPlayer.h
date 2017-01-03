@@ -11,7 +11,7 @@
 namespace au
 {
 	/// <summary>Class that facilitates loading in music and playing it</summary>
-	template <typename MusicID>
+	template <typename T>
 	class MusicPlayer : private sf::NonCopyable
 	{
 	public:
@@ -22,20 +22,20 @@ namespace au
 		MusicPlayer();
 	public:
 		/// <summary>Play a pre-loaded music track</summary>
-		/// <param name="trackID">The music id associated with the desired track</param>
+		/// <param name="track_id">The music id associated with the desired track</param>
 		/// <param name="loop">True to put the track on loop, false otherwise</param>
 		/// <see cref="stop"/>
 		/// <see cref="pause"/>
 		/// <seealso cref="loadTrack"/>
-		void play(MusicID trackID, bool loop);
+		void play(T track_id, bool loop);
 		/// <summary>Play a pre-loaded music track</summary>
 		/// <param name="pos">The position of the track's source</param>
-		/// <param name="trackID">The music id associated with the desired track</param>
+		/// <param name="track_id">The music id associated with the desired track</param>
 		/// <param name="loop">True to put the track on loop, false otherwise</param>
 		/// <see cref="pause"/>
 		/// <see cref="stop"/>
 		/// <seealso cref="loadTrack"/>
-		void play(const sf::Vector2f& pos, MusicID trackID, bool loop);
+		void play(const sf::Vector2f& pos, T track_id, bool loop);
 		/// <summary>(Un)Pause the current track</summary>
 		/// <param name="flag">True to pause the track, false otherwise</param>
 		/// <see cref="play"/>
@@ -47,16 +47,16 @@ namespace au
 		void stop();
 		/// <summary>Load in a music track</summary>
 		/// <param name="filename">The music track's filepath</param>
-		/// <param name="soundProperties">The sound properties associated with the track to be loaded in</param>
-		/// <param name="trackID">An ID with which to associate the music track (enum value)</param>
+		/// <param name="sound_properties">The sound properties associated with the track to be loaded in</param>
+		/// <param name="track_id">An ID with which to associate the music track (enum value)</param>
 		/// <see cref="play"/>
-		void loadTrack(const std::string& filename, const SoundProperties& soundProperties,
-			           MusicID trackID);
+		void loadTrack(const std::string& filename, const SoundProperties& sound_properties,
+			           T track_id);
 		/// <summary>Load in a music track</summary>
 		/// <param name="filename">The music track's filepath</param>
-		/// <param name="trackID">An ID with which to associate the music track (enum value)</param>
+		/// <param name="track_id">An ID with which to associate the music track (enum value)</param>
 		/// <see cref="play"/>
-		void loadTrack(const std::string& filename, MusicID trackID);
+		void loadTrack(const std::string& filename, T track_id);
 		/// <summary>Update the position of the current music track's source</summary>
 		/// <param name="pos">The updated position of the music track's source</param>
 		void updateTrackPosition(const sf::Vector2f& pos);
@@ -78,8 +78,8 @@ namespace au
 		bool isTrackPaused() const;
 
 	private:
-		std::map<MusicID, std::pair<std::string, SoundProperties>> mTrackProperties;
-		sf::Music                                                  mMusic;
+		std::map<T, std::pair<std::string, SoundProperties>> track_properties_;
+		sf::Music                                            music_;
 	};
 }
 #include "MusicPlayer.inl"

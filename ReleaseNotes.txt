@@ -1,5 +1,19 @@
 Aurora Engine Release Notes
 
+v0.2.0 | 03/01/2017
+  Features
+    * Added a Text class that derives from MaterialNode and possesses a sf::Text
+	  Provides additional functionality of loading in a font directly from the object and an optional shadow
+    * Added a VertexNode class that derives from MaterialNode and possesses a sf::VertexArray
+    * Added a SpriteNode class that derives from MaterialNode and possesses a sf::Sprite
+    * Added a MaterialNode class that derives from SceneNode that provides functionality for transformations (entities with physical bodies)
+    * Added a SceneNode class that will serve as the base class for scene graph architecture
+	  This base class provides functionality for attaching/detaching children nodes, event handling, updating and drawing of its node
+	  and its children nodes
+  Updates
+    - Changed naming conventions for class members(trailing underscore), variables(underscore separator) and template typenames(T, U, K) 
+	  except in ResourceHolder
+
 v0.1.1 | 02/01/2017
   Features
     * Added a MusicPlayer class

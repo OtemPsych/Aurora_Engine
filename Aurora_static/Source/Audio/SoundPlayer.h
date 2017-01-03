@@ -12,7 +12,7 @@
 namespace au
 {
 	/// <summary>Class that facilitates loading in sound effects and playing them</summary>
-	template <typename SoundID>
+	template <typename T>
 	class SoundPlayer : private sf::NonCopyable
 	{
 	public:
@@ -23,20 +23,20 @@ namespace au
 		SoundPlayer();
 	public:
 		/// <summary>Play a pre-loaded sound effect</summary>
-		/// <param name="effectID">The sound id associated with the desired sound effect</param>
+		/// <param name="effect_id">The sound id associated with the desired sound effect</param>
 		/// <see cref="loadEffect"/>
-		void play(SoundID effectID);
+		void play(T effect_id);
 		/// <summary>Play a pre-loaded sound effect</summary>
 		/// <param name="pos">The position of the sound's source</param>
-		/// <param name="effectID">The sound id associated with the desired sound effect</param>
+		/// <param name="effect_id">The sound id associated with the desired sound effect</param>
 		/// <see cref="loadEffect"/>
-		void play(const sf::Vector2f& pos, SoundID effectID);
+		void play(const sf::Vector2f& pos, T effect_id);
 		/// <summary>Load in a sound effect</summary>
 		/// <param name="filename">The sound effect's filepath</param>
-		/// <param name="soundProperties">The sound properties associated with the sound to be loaded in</param>
-		/// <param name="effectID">An ID with which to associate the sound effect (enum value)</param>
-		void loadEffect(const std::string& filename, const SoundProperties& soundProperties,
-			            SoundID effectID);
+		/// <param name="sound_properties">The sound properties associated with the sound to be loaded in</param>
+		/// <param name="effect_id">An ID with which to associate the sound effect (enum value)</param>
+		void loadEffect(const std::string& filename, const SoundProperties& sound_properties,
+			            T effect_id);
 		/// <summary>Pause all active sounds</summary>
 		/// <param name="flag">True to pause, false to unpause</param>
 		/// <see cref="stopSounds"/>
@@ -57,9 +57,9 @@ namespace au
 		void removeStoppedSounds();
 
 	private:
-		SoundBufferHolder<SoundID>         mSoundBuffers;
-		std::map<SoundID, SoundProperties> mSoundProperties;
-		std::list<sf::Sound>               mSounds;
+		SoundBufferHolder<T>         sound_buffers_;
+		std::map<T, SoundProperties> sound_properties_;
+		std::list<sf::Sound>         sounds_;
 	};
 }
 #include "SoundPlayer.inl"
