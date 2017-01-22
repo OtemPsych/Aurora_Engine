@@ -52,6 +52,18 @@ namespace au
 		/// <returns>The listener's position</returns>
 		/// <see cref="setListenerPosition"/>
 		sf::Vector2f getListenerPosition() const;
+		/// <summary>
+		/// Set the sound player's global volume(0-100)<para/>
+		/// A global volume of 50 will reduce the sound effects'<para/>
+		/// volume by half regardless of their own volume
+		/// </summary>
+		/// <param name="volume">The global volume</param>
+		/// <see cref="getGlobalVolume"/>
+		void setGlobalVolume(float volume);
+		/// <summary>Get the sound player's global volume</summary>
+		/// <returns>The global volume</returns>
+		/// <see cref="setGlobalVolume"/>
+		float getGlobalVolume() const;
 	private:
 		/// <summary>Remove all stopped sounds</summary>
 		void removeStoppedSounds();
@@ -60,6 +72,7 @@ namespace au
 		SoundBufferHolder<T>         sound_buffers_;
 		std::map<T, SoundProperties> sound_properties_;
 		std::list<sf::Sound>         sounds_;
+		float                        global_volume_;
 	};
 }
 #include "SoundPlayer.inl"

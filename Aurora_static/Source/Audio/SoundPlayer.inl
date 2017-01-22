@@ -4,10 +4,12 @@ namespace au
 {
 	/// <summary>
 	/// Default constructor<para/>
+	/// The global volume is set to 100%<para/>
 	/// The listener's position is set to (0, 0, 300)
 	/// </summary>
 	template <typename T>
 	SoundPlayer<T>::SoundPlayer()
+		: global_volume_(100.f)
 	{
 		sf::Listener::setPosition(0.f, 0.f, 300.f);
 	}
@@ -34,7 +36,7 @@ namespace au
 		sounds_.emplace_back(sf::Sound());
 		sounds_.back().setBuffer(sound_buffers_.get(effect_id));
 		sounds_.back().setPosition(pos.x, -pos.y, 0.f);
-		sounds_.back().setVolume(properties.getVolume());
+		sounds_.back().setVolume(global_volume_ * properties.getVolume() / 100.f);
 		sounds_.back().setAttenuation(properties.getAttenuation());
 		sounds_.back().setPitch(properties.getPitch());
 		sounds_.back().setMinDistance(properties.getMinDistance3D());
@@ -103,5 +105,32 @@ namespace au
 	void SoundPlayer<T>::removeStoppedSounds()
 	{
 		sounds_.remove_if([](const sf::Sound& s) { return s.getStatus() == sf::Sound::Stopped; });
+	}
+
+	/// <summary>
+	/// Set the sound player's global volume(0-100)<para/>
+	/// A global volume of 50 will reduce the sound effects'<para/>
+	/// volume by half regardless of their own volume
+	/// </summary>
+	/// <param name="volume">The global volume</param>
+	/// <see cref="getGlobalVolume"/>
+	template <typename T>
+	void SoundPlayer<T>::setGlobalVolume(float volume)
+	{
+		if (volume < 0.f)
+			global_volume_ = 0.f;
+		else if (volume > 100.f)
+			global_volume_ = 100.f;
+		else
+			global_volume_ = volume;
+	}
+
+	/// <summary>Get the sound player's global volume</summary>
+	/// <returns>The global volume</returns>
+	/// <see cref="setGlobalVolume"/>
+	template <typename T>
+	float SoundPlayer<T>::getGlobalVolume() const
+	{
+		return global_volume_;
 	}
 }

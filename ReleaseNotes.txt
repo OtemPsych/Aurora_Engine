@@ -1,5 +1,16 @@
 Aurora Engine Release Notes
 
+v1.0.0 | 22/01/2017
+  Features
+    * Added an Application class that controls the entire application
+    * Added a StateStack class that manages all the game states
+    * Added a State class that facilitates game state representation (main menu, settings, pause screen, game state, etc.)
+    * Added a global volume for the MusicPlayer and SoundPlayer classes
+    * Added a Textbox class that provides gui textbox functionalities
+    * Added a Button class that provides gui button functionalities
+  Bug Fixes
+    ~ Fixed a bug where the global bounding rect of a material node would be set to true when the node was copied
+
 v0.2.0 | 03/01/2017
   Features
     * Added a Text class that derives from MaterialNode and possesses a sf::Text

@@ -11,6 +11,7 @@ namespace au
 	MaterialNode::MaterialNode(const MaterialNode& copy)
 		: SceneNode(copy)
 		, origin_flags_(copy.origin_flags_)
+		, drawing_global_bounding_rect_(copy.drawing_global_bounding_rect_)
 	{
 		setOrigin(copy.getOrigin());
 		setPosition(copy.getPosition());

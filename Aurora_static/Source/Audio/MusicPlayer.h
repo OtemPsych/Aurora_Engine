@@ -76,10 +76,23 @@ namespace au
 		/// <returns>True if it has paused, false otherwise</returns>
 		/// <see cref="isTrackOver"/>
 		bool isTrackPaused() const;
+		/// <summary>
+		/// Set the music player's global volume(0-100)<para/>
+		/// A global volume of 50 will reduce the current music track's<para/>
+		/// volume by half regardless of its own volume
+		/// </summary>
+		/// <param name="volume">The global volume</param>
+		/// <see cref="getGlobalVolume"/>
+		void setGlobalVolume(float volume);
+		/// <summary>Get the music player's global volume</summary>
+		/// <returns>The global volume</returns>
+		/// <see cref="setGlobalVolume"/>
+		float getGlobalVolume() const;
 
 	private:
 		std::map<T, std::pair<std::string, SoundProperties>> track_properties_;
 		sf::Music                                            music_;
+		float                                                global_volume_;
 	};
 }
 #include "MusicPlayer.inl"

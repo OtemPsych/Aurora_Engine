@@ -1,29 +1,8 @@
 ========================================================================
-    STATIC LIBRARY : Aurora_static Project Overview
+    Aurora Engine - static lib
 ========================================================================
 
-AppWizard has created this Aurora_static library project for you.
+Aurora is a 2D game engine powered by the SFML API
 
-No source files were created as part of your project.
-
-
-Aurora_static.vcxproj
-    This is the main project file for VC++ projects generated using an Application Wizard.
-    It contains information about the version of Visual C++ that generated the file, and
-    information about the platforms, configurations, and project features selected with the
-    Application Wizard.
-
-Aurora_static.vcxproj.filters
-    This is the filters file for VC++ projects generated using an Application Wizard. 
-    It contains information about the association between the files in your project 
-    and the filters. This association is used in the IDE to show grouping of files with
-    similar extensions under a specific node (for e.g. ".cpp" files are associated with the
-    "Source Files" filter).
-
-/////////////////////////////////////////////////////////////////////////////
-Other notes:
-
-AppWizard uses "TODO:" comments to indicate parts of the source code you
-should add to or customize.
-
-/////////////////////////////////////////////////////////////////////////////
+The Aurora engine provides scene node architecture, music/sound players,
+gui functionalities, sfml resource holders and simple state management

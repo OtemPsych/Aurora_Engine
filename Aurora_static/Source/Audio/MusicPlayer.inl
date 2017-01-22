@@ -7,10 +7,12 @@ namespace au
 {
 	/// <summary>
 	/// Default constructor<para/>
+	/// The global volume is set to 100%<para/>
 	/// The listener's position is set to (0, 0, 300)
 	/// </summary>
 	template <typename T>
 	MusicPlayer<T>::MusicPlayer()
+		: global_volume_(100.f)
 	{
 		sf::Listener::setPosition(0.f, 0.f, 300.f);
 	}
@@ -43,7 +45,7 @@ namespace au
 		if (music_.openFromFile(found->second.first)) {
 			music_.setPosition(pos.x, -pos.y, 0.f);
 			music_.setLoop(loop);
-			music_.setVolume(found->second.second.getVolume());
+			music_.setVolume(global_volume_ * found->second.second.getVolume() / 100.f);
 			music_.setAttenuation(found->second.second.getAttenuation());
 			music_.setPitch(found->second.second.getPitch());
 			music_.setMinDistance(found->second.second.getMinDistance3D());
@@ -138,5 +140,32 @@ namespace au
 	bool MusicPlayer<T>::isTrackPaused() const
 	{
 		return music_.getStatus() == sf::SoundSource::Status::Paused;
+	}
+
+	/// <summary>
+	/// Set the music player's global volume(0-100)<para/>
+	/// A global volume of 50 will reduce the current music track's<para/>
+	/// volume by half regardless of its own volume
+	/// </summary>
+	/// <param name="volume">The global volume</param>
+	/// <see cref="getGlobalVolume"/>
+	template <typename T>
+	void MusicPlayer<T>::setGlobalVolume(float volume)
+	{
+		if (volume < 0.f)
+			global_volume_ = 0.f;
+		else if (volume > 100.f)
+			global_volume_ = 100.f;
+		else
+			global_volume_ = volume;
+	}
+
+	/// <summary>Get the music player's global volume</summary>
+	/// <returns>The global volume</returns>
+	/// <see cref="setGlobalVolume"/>
+	template <typename T>
+	float MusicPlayer<T>::getGlobalVolume() const
+	{
+		return global_volume_;
 	}
 }

@@ -240,3 +240,13 @@ ModelManifest.xml
 
 # FAKE - F# Make
 .fake/
+*.ttf
+*.ogg
+*.wav
+*.png
+*.vcxproj
+*.filters
+Aurora-Testbed/openal32.dll
+Aurora-Testbed/Source/main.cpp
+*.sln
+Aurora_static/Aurora_static.vcxproj.filters
