@@ -1,5 +1,10 @@
 Aurora Engine Release Notes
 
+v1.1.0b | 29/01/2017
+  Bug Fixes
+    ~ Fixed a bug which caused states to recursively call the handleEvent, update and draw methods of the stack class if
+	  the default State class methods were used
+
 v1.1.0a | 29/01/2017
   Features
     * Added documentation for the prototype class ParticleSystem

@@ -22,19 +22,19 @@ namespace au
 
 	bool State::handleEvent(const sf::Event& event)
 	{
-		stack_->handleEvent(event);
+		scene_graph_.handleEvent(event);
 		return true;
 	}
 
 	bool State::update(sf::Time dt)
 	{
-		stack_->update(dt);
+		scene_graph_.update(dt);
 		return true;
 	}
 
 	void State::draw()
 	{
-		stack_->draw();
+		window_->draw(scene_graph_);
 	}
 
 	void State::buildScene()
