@@ -1,5 +1,11 @@
 Aurora Engine Release Notes
 
+v1.1.0a | 29/01/2017
+  Features
+    * Added documentation for the prototype class ParticleSystem
+  Updates
+    - The data member vertices_ of the class VertexNode is now public
+
 v1.1.0 | 27/01/2017
   Features
     * Added a prototype ParticleSystem class that facilitates particle management

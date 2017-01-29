@@ -80,8 +80,9 @@ namespace au
 		/// <param name="states">Render states (transform, texture)</param>
 		virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const override;
 
-	private:
+	public:
 		sf::VertexArray    vertices_;
+	private:
 		const sf::Texture* texture_;
 		sf::FloatRect      texture_rect_;
 	};
