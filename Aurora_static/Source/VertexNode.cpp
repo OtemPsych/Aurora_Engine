@@ -111,6 +111,13 @@ namespace au
 		return vertices_.getBounds();
 	}
 
+	void VertexNode::operator=(const VertexNode& copy)
+	{
+		vertices_ = copy.vertices_;
+		texture_ = copy.texture_;
+		texture_rect_ = texture_rect_;
+	}
+
 	void VertexNode::drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const
 	{
 		states.texture = texture_;

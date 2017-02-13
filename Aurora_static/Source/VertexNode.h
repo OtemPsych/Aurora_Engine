@@ -71,18 +71,23 @@ namespace au
 		/// <param name="index">Index of the vertex</param>
 		/// <returns>The vertex found at index specified</returns>
 		inline sf::Vertex& operator[](size_t index) { return vertices_[index]; }
+		/// <summary>Get the vertex node's vertices</summary>
+		/// <returns>The vertex node's vertices</returns>
+		inline sf::VertexArray& getVertices() { return vertices_; }
 		/// <summary>Get the node's local bounds</summary>
 		/// <returns>The node's local bounds</returns>
 		virtual sf::FloatRect getLocalBounds() const override;
+		/// <summary>Overloaded copy operator</summary>
+		/// <param name="copy">VertexNode object to be copied</param>
+		void operator=(const VertexNode& copy);
 	protected:
 		/// <summary>Draws the node's vertices</summary>
 		/// <param name="target">Render target (window, render texture)</param>
 		/// <param name="states">Render states (transform, texture)</param>
 		virtual void drawCurrent(sf::RenderTarget& target, sf::RenderStates states) const override;
 
-	public:
-		sf::VertexArray    vertices_;
 	private:
+		sf::VertexArray    vertices_;
 		const sf::Texture* texture_;
 		sf::FloatRect      texture_rect_;
 	};
